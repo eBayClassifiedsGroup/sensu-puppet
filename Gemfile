@@ -1,15 +1,12 @@
 source ENV['GEM_SOURCE'] || "https://rubygems.org"
 
-if RUBY_VERSION >= '1.8.7' and RUBY_VERSION < '1.9'
-  gem 'rspec', '~> 2.0'
-end
-
 group :development, :unit_tests do
   gem 'rake',                                             '< 11.0.0'
   gem 'rspec-puppet',                                     :require => false
   gem 'puppetlabs_spec_helper',                           :require => false
   gem 'puppet-lint', "1.0.1",                             :require => false
-  gem 'json',                                             :require => false
+  gem 'json', "~> 1.8.3",                                 :require => false
+  gem 'json_pure', "~> 1.8.3",                            :require => false
   gem 'puppet-syntax',                                    :require => false
   gem 'metadata-json-lint',                               :require => false
   gem 'puppet-blacksmith',                                :require => false
@@ -33,8 +30,9 @@ group :system_tests do
 end
 
 group :development do
-  gem 'simplecov',   :require => false
-  gem 'guard-rake',  :require => false
+  gem 'simplecov',          :require => false
+  gem 'guard-rake',         :require => false
+  gem 'listen', '~> 3.0.0', :require => false
 end
 
 if facterversion = ENV['FACTER_GEM_VERSION']
@@ -46,7 +44,7 @@ end
 if puppetversion = ENV['PUPPET_GEM_VERSION']
   gem 'puppet', puppetversion, :require => false
 else
-  gem 'puppet', '>= 3.3.0', '< 4.0.0', :require => false
+  gem 'puppet', '>= 4.0.0', '< 4.5.0', :require => false
 end
 
 # vim:ft=ruby
